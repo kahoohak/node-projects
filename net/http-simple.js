@@ -1,6 +1,22 @@
 const http = require('http')
 const url = require('url')
 
+const responseData = {
+  ID: 'zhangsan',
+  Name: '张三',
+  RegisterDate: '2020年3月1日',
+};
+
+function toHTML(data) {
+  return `
+    <ul>
+      <li><span>账号：</span><span>${data.ID}</span></li>
+      <li><span>昵称：</span><span>${data.Name}</span></li>
+      <li><span>注册时间：</span><span>${data.RegisterDate}</span></li>
+    </ul>
+  `;
+}
+
 const server = http.createServer((req, res) => {
   console.log(req.headers, req.url)
   const { pathname } = url.parse(`http://${req.headers.host}${req.url}`)
