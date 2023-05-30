@@ -18,11 +18,16 @@ function toHTML(data) {
 }
 
 const server = http.createServer((req, res) => {
-  console.log(req.headers, req.url)
   const { pathname } = url.parse(`http://${req.headers.host}${req.url}`)
   if(pathname === '/') {
-    res.writeHead(200, {'Content-Type': 'text/html'})
-    res.end('<h1>Hello world</h1>')
+    const accept = req.headers.accept
+    if(accept.includes('application/json')) {
+      res.writeHead(200, {'Content-Type': 'application/json;'})
+      res.end(JSON.stringify(responseData))
+    } else {
+      res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'})
+      res.end(toHTML(responseData))
+    }
   } else {
     res.writeHead(404, {'Content-Type': 'text/html'})
     res.end('<h1>Not Found</h1>')
