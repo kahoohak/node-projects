@@ -21,7 +21,7 @@ const server = http.createServer((req, res) => {
   const { pathname } = url.parse(`http://${req.headers.host}${req.url}`)
   if(pathname === '/') {
     const accept = req.headers.accept
-    if(accept.includes('application/json')) {
+    if(req.method === 'POST' || accept.includes('application/json')) {
       res.writeHead(200, {'Content-Type': 'application/json;'})
       res.end(JSON.stringify(responseData))
     } else {
