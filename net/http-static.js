@@ -2,6 +2,7 @@ const http = require('http')
 const path = require('path')
 const url = require('url')
 const fs = require('fs')
+const mime = require('mime')
 
 const server = http.createServer((req, res) => { 
   let urlPathname = url.parse(req.url).pathname;
@@ -14,10 +15,15 @@ const server = http.createServer((req, res) => {
     if(isDir) filePath = path.join(filePath, 'index.html')
 
     if(fs.existsSync(filePath)) {
-      
+      const { ext } = path.parse(filePath)
+      res.writeHead(200, {'Content-Type': mime.getType(ext)})
+      const fileStream = fs.createReadStream(filePath)
+      fileStream.pipe(res)
     }
+  } else {
+    res.writeHead(404, {'Content-Type': 'text/html; charset=utf-8'})
+    res.end('<h1>Not Found</h1>')
   }
-
 })
 
 server.on('clientError', (err, socket) => {
