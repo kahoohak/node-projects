@@ -41,19 +41,19 @@ class Router {
   }
 
   get(rule, aspect) {
-    return route("GET", path.join(this.baseURL, rule), aspect);
+    return route("GET", path.join(this.baseUrl, rule), aspect);
   }
 
   post(rule, aspect) {
-    return route("POST", path.join(this.baseURL, rule), aspect);
+    return route("POST", path.join(this.baseUrl, rule), aspect);
   }
 
   put(rule, aspect) {
-    return route("PUT", path.join(this.baseURL, rule), aspect);
+    return route("PUT", path.join(this.baseUrl, rule), aspect);
   }
 
   delete(rule, aspect) {
-    return route("DELETE", path.join(this.baseURL, rule), aspect);
+    return route("DELETE", path.join(this.baseUrl, rule), aspect);
   }
 
   all(rule, aspect) {

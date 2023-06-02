@@ -1,4 +1,5 @@
 const Server = require('./lib/server')
+const param = require('./lib/aspect/param')
 
 const app = new Server()
 
@@ -14,6 +15,8 @@ app.use(async ({res}, next) => {
   await next()
   //失败，暂停执行
 })
+
+app.use(param)
 
 app.listen({
   port: 9090,
