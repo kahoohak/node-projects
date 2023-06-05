@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "checksum": "^1.0.0",
+    "handlebars": "^4.7.7",
     "mime": "^3.0.0"
   }
 }
