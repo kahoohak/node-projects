@@ -36,25 +36,25 @@ class Interceptor {
 
 module.exports = Interceptor
 
-function wait(ms) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, ms)
-  })
-}
+// function wait(ms) {
+//   return new Promise((resolve) => {
+//     setTimeout(resolve, ms)
+//   })
+// }
 
-function task(id) {
-  return async (ctx, next) => {
-    console.log(`task ${id} start`)
-    ctx.count++
-    await wait(1000)
-    console.log(`count: ${ctx.count}`)
-    //执行下一个切面
-    await next()
-    console.log(`task ${id} end`)
-  }
-}
+// function task(id) {
+//   return async (ctx, next) => {
+//     console.log(`task ${id} start`)
+//     ctx.count++
+//     await wait(1000)
+//     console.log(`count: ${ctx.count}`)
+//     //执行下一个切面
+//     await next()
+//     console.log(`task ${id} end`)
+//   }
+// }
 
-const inter = new Interceptor()
+// const inter = new Interceptor()
 
 //注册拦截切面
 // inter.use(task(0)) 
